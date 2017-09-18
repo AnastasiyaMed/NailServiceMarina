@@ -3,10 +3,6 @@
 
     <data>
 
-        <import type="by.medvedeva.anastasiya.nailservicemarina.activities.CalendarViewModel.STATE" />
-
-        <import type="android.view.View" />
-
 
         <variable
             name="viewModel"
@@ -35,16 +31,14 @@
             android:id="@+id/datePicker"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="5"
             android:layout_gravity="center"
+            android:layout_weight="5"
             android:calendarViewShown="true"
             android:day="@={viewModel.day}"
             android:firstDayOfWeek="2"
             android:month="@={viewModel.month}"
             android:spinnersShown="false"
             android:year="@={viewModel.year}" />
-
-
 
 
         <Button
