@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="by.medvedeva.anastasiya.nailservicemarina.activities.CalendarViewModel.STATE" />
+
+        <import type="android.view.View" />
+
+
+        <variable
+            name="handler"
+            type="by.medvedeva.anastasiya.nailservicemarina.activities.DateHandler" />
+
+        <variable
+            name="viewModel"
+            type="by.medvedeva.anastasiya.nailservicemarina.activities.CalendarViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="7">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hello"
+            android:textSize="20sp" />
+
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:date="@={viewModel.date}"
+            android:firstDayOfWeek="2"
+            android:selectedWeekBackgroundColor="@color/colorAccent" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="@{() -> handler.onSelectedDayChange()}"
+            android:text="@string/next" />
+
+    </LinearLayout>
+</layout>
