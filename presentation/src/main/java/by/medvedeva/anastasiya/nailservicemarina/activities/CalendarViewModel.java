@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
 
 public class CalendarViewModel implements BaseViewModel {
@@ -57,9 +58,13 @@ public class CalendarViewModel implements BaseViewModel {
 
     public void onSuperButtonClick() {
         //  Toast.makeText(activity, String.valueOf(date.get()), Toast.LENGTH_LONG).show();
-        Log.e("AAAA", String.valueOf(year.get()));
-        Log.e("AAAA", String.valueOf(month.get()+1));
-        Log.e("AAAA", String.valueOf(day.get()));
+        if (day.get() <= Calendar.getInstance().get(Calendar.DAY_OF_MONTH) && month.get() <= Calendar.getInstance().get(Calendar.MONTH)) {
+            Toast.makeText(activity, R.string.warning, Toast.LENGTH_LONG).show();
+        } else {
+            Log.e("AAAA", String.valueOf(year.get()));
+            Log.e("AAAA", String.valueOf(month.get() + 1));
+            Log.e("AAAA", String.valueOf(day.get()));
+        }
     }
 
 

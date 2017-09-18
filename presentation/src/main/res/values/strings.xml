@@ -2,4 +2,5 @@
     <string name="app_name">Nail Service Marina</string>
     <string name="hello">Hello! Nail master Belaya Marina welcomes you! Please, choice the date</string>
     <string name="next">Go next</string>
+    <string name="warning">Only tomorrow and further time-slots are available</string>
 </resources>

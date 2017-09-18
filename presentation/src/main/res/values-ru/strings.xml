@@ -3,4 +3,5 @@
     <string name="app_name">Ногтевой сервис Марины</string>
     <string name="hello">Добрый день! Белая Марина приветствует Вас! Выберете дату:</string>
     <string name="next">Перейти</string>
+    <string name="warning">Прошедшие дни и сегодняшний день  для записи недоступны </string>
 </resources>
