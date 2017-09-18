@@ -2,6 +2,7 @@ package by.medvedeva.anastasiya.nailservicemarina.activities;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.util.Log;
@@ -15,6 +16,9 @@ import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
 
 public class CalendarViewModel implements BaseViewModel {
+    public static final String DAY = "DAY";
+    public static final String MONTH = "MONTH";
+    public static final String YEAR = "YEAR";
 
 
     private Activity activity;
@@ -57,6 +61,11 @@ public class CalendarViewModel implements BaseViewModel {
         if (day.get() <= Calendar.getInstance().get(Calendar.DAY_OF_MONTH) && month.get() <= Calendar.getInstance().get(Calendar.MONTH)) {
             Toast.makeText(activity, R.string.warning, Toast.LENGTH_LONG).show();
         } else {
+            Intent intent = new Intent(activity, TimeChoiceActivity.class);
+            intent.putExtra(DAY, day.get());
+            intent.putExtra(MONTH, month.get());
+            intent.putExtra(YEAR, year.get());
+            activity.startActivity(intent);
             Log.e("AAAA", String.valueOf(year.get()));
             Log.e("AAAA", String.valueOf(month.get() + 1));
             Log.e("AAAA", String.valueOf(day.get()));
