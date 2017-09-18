@@ -9,10 +9,6 @@
 
 
         <variable
-            name="handler"
-            type="by.medvedeva.anastasiya.nailservicemarina.activities.DateHandler" />
-
-        <variable
             name="viewModel"
             type="by.medvedeva.anastasiya.nailservicemarina.activities.CalendarViewModel" />
     </data>
@@ -34,20 +30,26 @@
             android:text="@string/hello"
             android:textSize="20sp" />
 
-        <CalendarView
-            android:id="@+id/calendar"
-            android:layout_width="match_parent"
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="5"
-            android:date="@={viewModel.date}"
+            android:layout_gravity="center"
+            android:calendarViewShown="true"
+            android:day="@={viewModel.day}"
             android:firstDayOfWeek="2"
-            android:selectedWeekBackgroundColor="@color/colorAccent" />
+            android:month="@={viewModel.month}"
+            android:spinnersShown="false"
+            android:year="@={viewModel.year}" />
+
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:onClick="@{() -> handler.onSelectedDayChange()}"
+            android:onClick="@{() -> viewModel.onSuperButtonClick()}"
             android:text="@string/next" />
 
     </LinearLayout>

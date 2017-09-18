@@ -17,12 +17,13 @@ public class CalendarActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        CalendarViewModel viewModel = new CalendarViewModel(this);
+        final CalendarViewModel viewModel = new CalendarViewModel(this);
         this.viewModel = viewModel;
         ActivityCalendarBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_calendar);
         binding.setViewModel(viewModel);
-        binding.setHandler(viewModel);
-
         super.onCreate(savedInstanceState);
+
+
+
     }
 }
