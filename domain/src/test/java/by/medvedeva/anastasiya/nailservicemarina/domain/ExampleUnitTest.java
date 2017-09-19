@@ -1,4 +1,4 @@
-package by.medvedeva.anastasiya.domain;
+package by.medvedeva.anastasiya.nailservicemarina.domain;
 
 import org.junit.Test;
 

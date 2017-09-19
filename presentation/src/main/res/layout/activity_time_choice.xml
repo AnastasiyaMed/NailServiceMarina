@@ -3,9 +3,9 @@
 
     <data>
 
-        <import type="by.medvedeva.anastasiya.nailservicemarina.activities.TimeChoiceViewModel.STATE" />
+        <!--<import type="by.medvedeva.anastasiya.nailservicemarina.activities.TimeChoiceViewModel.STATE" />-->
 
-        <import type="android.view.View" />
+        <!--<import type="android.view.View" />-->
 
         <variable
             name="viewModel"
@@ -18,6 +18,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />
+
+        <!--android:visibility="@{viewModel.state == STATE.DATA ? View.VISIBLE : View.GONE}"-->
+
+
 
     </LinearLayout>
 </layout>
