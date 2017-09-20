@@ -1,6 +1,7 @@
 package by.medvedeva.anastasiya.nailservicemarina.activities;
 
 import android.app.Activity;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,9 @@ import java.util.List;
 import by.medvedeva.anastasiya.nailservicemarina.adapters.TimeChoiceAdapter;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
 import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
+import by.medvedeva.anastasiya.nailservicemarina.domain.interaction.TimeSlotsGetterUseCase;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * Created by Medvedeva Anastasiya
@@ -21,6 +25,7 @@ public class TimeChoiceViewModel implements BaseViewModel {
     private Activity activity;
 
     TimeChoiceAdapter adapter = new TimeChoiceAdapter();
+    TimeSlotsGetterUseCase useCase = new TimeSlotsGetterUseCase();
 
     public TimeChoiceViewModel(Activity activity) {
         this.activity = activity;
@@ -52,6 +57,26 @@ public class TimeChoiceViewModel implements BaseViewModel {
         time4.setTime("17:00-19:00");
         TimeSlot time5 = new TimeSlot();
         time5.setTime("19:00-21:00");
+
+        useCase.execute(null, new DisposableObserver<List<TimeSlot>>() {
+            @Override
+            public void onNext(@NonNull List<TimeSlot> timeSlots) {
+                if (timeSlots.size() != 0) {
+                    Log.e("BBB", timeSlots.toString());
+                }
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+
 
         List<TimeSlot> times = new ArrayList<>();
         times.add(time0);
