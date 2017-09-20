@@ -5,6 +5,7 @@ import java.util.List;
 import by.medvedeva.anastasiya.nailservicemarina.data.entity.TimeSlotData;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by Medvedeva Anastasiya
@@ -14,6 +15,9 @@ import retrofit2.http.GET;
 interface RestApi {
 
     @GET("data/time_slots")
-    Observable<List<TimeSlotData>> getTimeSlots();
+    Observable<List<TimeSlotData>> getAllTimeSlots();
+
+    @GET("data/time_slots")
+    Observable<List<TimeSlotData>> getTimeSlots(@Query("where") String calendarDate);
 
 }

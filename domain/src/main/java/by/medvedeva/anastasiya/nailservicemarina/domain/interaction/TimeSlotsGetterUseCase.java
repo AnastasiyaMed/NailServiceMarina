@@ -18,12 +18,12 @@ import io.reactivex.functions.Function;
  * on 19.09.2017.
  */
 
-public class TimeSlotsGetterUseCase extends UseCase<Void, List<TimeSlot>> {
+public class TimeSlotsGetterUseCase extends UseCase<String, List<TimeSlot>> {
     private static final String LOG_TAG = "log_tag";
 
     @Override
-    protected Observable<List<TimeSlot>> buildUseCase(Void aVoid) {
-        return RestService.getInstance().getTimeSlots().map(new Function<List<TimeSlotData>, List<TimeSlot>>() {
+    protected Observable<List<TimeSlot>> buildUseCase(String calendarDate) {
+        return RestService.getInstance().getTimeSlots(calendarDate).map(new Function<List<TimeSlotData>, List<TimeSlot>>() {
             @Override
             public List<TimeSlot> apply(@NonNull List<TimeSlotData> timeSlotDataList) throws Exception {
                 List<TimeSlot> timeSlotList = new ArrayList<>();

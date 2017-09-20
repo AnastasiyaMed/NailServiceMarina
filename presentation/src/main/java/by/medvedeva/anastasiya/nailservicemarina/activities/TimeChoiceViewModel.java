@@ -1,6 +1,7 @@
 package by.medvedeva.anastasiya.nailservicemarina.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ import io.reactivex.observers.DisposableObserver;
  */
 
 public class TimeChoiceViewModel implements BaseViewModel {
+    public static final String DAY = "DAY";
+    public static final String MONTH = "MONTH";
+    public static final String YEAR = "YEAR";
 
     public enum STATE {PROGRESS, DATA}
 
@@ -58,7 +62,16 @@ public class TimeChoiceViewModel implements BaseViewModel {
         TimeSlot time5 = new TimeSlot();
         time5.setTime("19:00-21:00");
 
-        useCase.execute(null, new DisposableObserver<List<TimeSlot>>() {
+        Intent intent = activity.getIntent();
+
+
+        String calendarDate = (String.valueOf(intent.getIntExtra(YEAR, 0)))
+                .concat(" ")
+                .concat(String.valueOf(intent.getIntExtra(MONTH, 0)))
+                .concat(" ")
+                .concat(String.valueOf(intent.getIntExtra(DAY, 0)));
+
+        useCase.execute(calendarDate, new DisposableObserver<List<TimeSlot>>() {
             @Override
             public void onNext(@NonNull List<TimeSlot> timeSlots) {
                 if (timeSlots.size() != 0) {

@@ -54,8 +54,13 @@ public class RestService {
         restApi = retrofit.create(RestApi.class);
     }
 
-    public Observable<List<TimeSlotData>> getTimeSlots() {
-        return restApi.getTimeSlots();
+    public Observable<List<TimeSlotData>> getAllTimeSlots() {
+        return restApi.getAllTimeSlots();
     }
+
+    public Observable<List<TimeSlotData>> getTimeSlots(String calendarDate) {
+        return restApi.getTimeSlots("calendar_date=".concat(calendarDate));
+    }
+
 
 }
