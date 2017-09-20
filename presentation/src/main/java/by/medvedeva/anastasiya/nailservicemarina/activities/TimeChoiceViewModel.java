@@ -12,6 +12,7 @@ import by.medvedeva.anastasiya.nailservicemarina.adapters.TimeChoiceAdapter;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
 import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 import by.medvedeva.anastasiya.nailservicemarina.domain.interaction.TimeSlotsGetterUseCase;
+import by.medvedeva.anastasiya.nailservicemarina.entity.Date;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 
@@ -32,8 +33,9 @@ public class TimeChoiceViewModel implements BaseViewModel {
     public ObservableField<String> date = new ObservableField<>("");
     TimeChoiceAdapter adapter = new TimeChoiceAdapter();
     TimeSlotsGetterUseCase useCase = new TimeSlotsGetterUseCase();
+    private Date dateConverter = new Date();
 
-    public TimeChoiceViewModel(Activity activity) {
+    TimeChoiceViewModel(Activity activity) {
         this.activity = activity;
     }
 
@@ -67,11 +69,19 @@ public class TimeChoiceViewModel implements BaseViewModel {
         Intent intent = activity.getIntent();
 
 
-        String calendarDate = (String.valueOf(intent.getIntExtra(YEAR, 0)))
-                .concat(" ")
-                .concat(String.valueOf(intent.getIntExtra(MONTH, 0)))
-                .concat(" ")
-                .concat(String.valueOf(intent.getIntExtra(DAY, 0)));
+        String calendarDate = (String.valueOf(intent.getIntExtra(DAY, 0)))
+                .concat("/")
+                .concat(String.valueOf(1+intent.getIntExtra(MONTH, 0)))
+                .concat("/")
+                .concat(String.valueOf(intent.getIntExtra(YEAR, 0)));
+
+        date.set(calendarDate);
+
+//        date.set(dateConverter.getDayOfWeek().get(intent.getIntExtra(DAY, 1))
+//                .concat(" ")
+//                .concat(dateConverter.getMonthsOfYear().get(intent.getIntExtra(MONTH, 0)))
+//                .concat(" ")
+//                .concat(String.valueOf(intent.getIntExtra(YEAR, 0))));
 
         useCase.execute(calendarDate, new DisposableObserver<List<TimeSlot>>() {
             @Override

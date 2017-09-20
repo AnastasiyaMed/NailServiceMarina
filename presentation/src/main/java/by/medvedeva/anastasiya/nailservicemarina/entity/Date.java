@@ -1,6 +1,6 @@
 package by.medvedeva.anastasiya.nailservicemarina.entity;
 
-import java.util.HashMap;
+import android.util.SparseArray;
 
 /**
  * Created by Medvedeva Anastasiya
@@ -8,20 +8,25 @@ import java.util.HashMap;
  */
 
 public class Date {
-    private HashMap<Integer, String> daysOfWeek;
-    private HashMap<Integer, String> monthsOfYear;
+    private SparseArray<String> daysOfWeek;
+    private SparseArray<String> monthsOfYear;
 
-    public HashMap<Integer, String> getDayOfWeek() {
+    public Date() {
+        this.daysOfWeek = initWeek();
+        this.monthsOfYear = initMonthsOfYear();
+    }
+
+    public SparseArray<String> getDayOfWeek() {
         return daysOfWeek;
     }
 
 
-    public HashMap<Integer, String> getMonthsOfYear() {
+    public SparseArray<String> getMonthsOfYear() {
         return monthsOfYear;
     }
 
-    private HashMap<Integer, String> initWeek() {
-
+    private SparseArray<String> initWeek() {
+        SparseArray<String> daysOfWeek = new SparseArray<>();
         daysOfWeek.put(1, "Sunday");
         daysOfWeek.put(2, "Monday");
         daysOfWeek.put(3, "Tuesday");
@@ -30,5 +35,22 @@ public class Date {
         daysOfWeek.put(6, "Friday");
         daysOfWeek.put(7, "Saturday");
         return daysOfWeek;
+    }
+
+    private SparseArray<String> initMonthsOfYear() {
+        SparseArray<String> monthsOfYear = new SparseArray<>();
+        monthsOfYear.put(0, "January");
+        monthsOfYear.put(1, "February");
+        monthsOfYear.put(2, "March");
+        monthsOfYear.put(3, "April");
+        monthsOfYear.put(4, "May");
+        monthsOfYear.put(5, "June");
+        monthsOfYear.put(6, "July");
+        monthsOfYear.put(7, "August");
+        monthsOfYear.put(8, "September");
+        monthsOfYear.put(9, "October");
+        monthsOfYear.put(10, "November");
+        monthsOfYear.put(11, "December");
+        return monthsOfYear;
     }
 }
