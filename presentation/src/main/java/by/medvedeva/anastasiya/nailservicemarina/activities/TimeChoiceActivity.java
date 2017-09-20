@@ -24,6 +24,8 @@ public class TimeChoiceActivity extends BaseActivity {
 
         ActivityTimeChoiceBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_time_choice);
         binding.setViewModel(viewModel);
+
+
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(viewModel.adapter);
         super.onCreate(savedInstanceState);

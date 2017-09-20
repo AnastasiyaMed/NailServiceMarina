@@ -2,6 +2,7 @@ package by.medvedeva.anastasiya.nailservicemarina.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.databinding.ObservableField;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class TimeChoiceViewModel implements BaseViewModel {
     public enum STATE {PROGRESS, DATA}
 
     private Activity activity;
-
+    public ObservableField<STATE> state = new ObservableField<>(STATE.PROGRESS);
+    public ObservableField<String> date = new ObservableField<>("");
     TimeChoiceAdapter adapter = new TimeChoiceAdapter();
     TimeSlotsGetterUseCase useCase = new TimeSlotsGetterUseCase();
 
@@ -100,6 +102,7 @@ public class TimeChoiceViewModel implements BaseViewModel {
         times.add(time5);
 
         adapter.setItems(times);
+        state.set(STATE.DATA);
 
     }
 
