@@ -16,11 +16,12 @@
         android:paddingStart="@dimen/default_padding"
         android:paddingTop="@dimen/default_padding">
 
-        <Button
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.onSuperButtonClick()}"
-            android:text="@={viewModel.time}"
+            android:layout_height="match_parent"
+            android:background="@color/colorGray"
+            android:gravity="center"
+            android:text="@{viewModel.time}"
             android:textSize="24sp" />
 
     </FrameLayout>

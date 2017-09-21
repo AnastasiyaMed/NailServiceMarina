@@ -20,7 +20,6 @@ import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 
 public class TimeItemViewModel extends BaseItemViewModel<TimeSlot> {
     public ObservableField<String> time = new ObservableField<>("");
-    private OnItemClickListener onItemClickListener;
 
     @Override
     public void setItem(TimeSlot item, int position) {
@@ -30,17 +29,5 @@ public class TimeItemViewModel extends BaseItemViewModel<TimeSlot> {
     }
 
 
-    public void onSuperButtonClick() {
-//        Intent intent = new Intent(context, DetailsActivity.class);
-//        intent.putExtra("ID", id);
-//        context.startActivity(intent);
-       this.onItemClickListener = onItemClickListener;
-        onItemClickListener.onItemClick(time.get());
-//
-    }
-
-       public interface OnItemClickListener {
-        void onItemClick(String time);
-    }
 
 }

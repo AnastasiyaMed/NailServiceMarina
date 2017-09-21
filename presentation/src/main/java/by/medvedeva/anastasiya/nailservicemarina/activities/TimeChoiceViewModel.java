@@ -28,13 +28,14 @@ public class TimeChoiceViewModel implements BaseViewModel {
     private static final String DAY = "DAY";
     private static final String MONTH = "MONTH";
     private static final String YEAR = "YEAR";
+    private List<TimeSlot> times = new ArrayList<>();
 
     public enum STATE {PROGRESS, DATA}
 
     private FragmentActivity activity;
     public ObservableField<STATE> state = new ObservableField<>(STATE.PROGRESS);
     public ObservableField<String> date = new ObservableField<>("");
-    TimeChoiceAdapter adapter = new TimeChoiceAdapter();
+    TimeChoiceAdapter adapter = new TimeChoiceAdapter(times);
     private TimeSlotsGetterUseCase useCase = new TimeSlotsGetterUseCase();
 
     TimeChoiceViewModel(FragmentActivity activity) {
@@ -100,7 +101,6 @@ public class TimeChoiceViewModel implements BaseViewModel {
         });
 
 
-        List<TimeSlot> times = new ArrayList<>();
         times.add(time0);
         times.add(time1);
         times.add(time2);
@@ -111,7 +111,7 @@ public class TimeChoiceViewModel implements BaseViewModel {
         adapter.setItems(times);
         state.set(STATE.DATA);
 
-        adapter.setOnItemClickListener(new TimeItemViewModel.OnItemClickListener() {
+        adapter.setOnItemClickListener(new TimeChoiceAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String time) {
                 TimeChoiceFragment fragment = new TimeChoiceFragment();
@@ -134,19 +134,19 @@ public class TimeChoiceViewModel implements BaseViewModel {
 
     }
 
-    public void onItemClick(String time) {
-
-        TimeChoiceFragment fragment = new TimeChoiceFragment();
-        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container, fragment, TimeChoiceFragment.class.getName());
-        Bundle bundle = new Bundle();
-        bundle.putString("TIME", time);
-        bundle.putString("DATE", date.get());
-        // bundle.putString("UPDATE_SUCCESS", activity.getIntent().getStringExtra("UPDATE_SUCCESS"));
-        fragment.setArguments(bundle);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-
-
-    }
+//    public void onItemClick(String time) {
+//
+//        TimeChoiceFragment fragment = new TimeChoiceFragment();
+//        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.replace(R.id.container, fragment, TimeChoiceFragment.class.getName());
+//        Bundle bundle = new Bundle();
+//        bundle.putString("TIME", time);
+//        bundle.putString("DATE", date.get());
+//        // bundle.putString("UPDATE_SUCCESS", activity.getIntent().getStringExtra("UPDATE_SUCCESS"));
+//        fragment.setArguments(bundle);
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
+//
+//
+//    }
 }
