@@ -19,8 +19,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.onSuperButtonClick(context)}"
-            android:text="@{viewModel.time}"
+            android:onClick="@{() -> viewModel.onSuperButtonClick()}"
+            android:text="@={viewModel.time}"
             android:textSize="24sp" />
 
     </FrameLayout>

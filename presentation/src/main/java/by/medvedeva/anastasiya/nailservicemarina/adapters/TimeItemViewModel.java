@@ -3,8 +3,12 @@ package by.medvedeva.anastasiya.nailservicemarina.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.ObservableField;
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
+import by.medvedeva.anastasiya.nailservicemarina.R;
+import by.medvedeva.anastasiya.nailservicemarina.activities.TimeChoiceFragment;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseItemViewModel;
 import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 
@@ -16,6 +20,7 @@ import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 
 public class TimeItemViewModel extends BaseItemViewModel<TimeSlot> {
     public ObservableField<String> time = new ObservableField<>("");
+    private OnItemClickListener onItemClickListener;
 
     @Override
     public void setItem(TimeSlot item, int position) {
@@ -25,12 +30,17 @@ public class TimeItemViewModel extends BaseItemViewModel<TimeSlot> {
     }
 
 
-    public void onSuperButtonClick(Context context) {
+    public void onSuperButtonClick() {
 //        Intent intent = new Intent(context, DetailsActivity.class);
 //        intent.putExtra("ID", id);
 //        context.startActivity(intent);
+       this.onItemClickListener = onItemClickListener;
+        onItemClickListener.onItemClick(time.get());
 //
     }
 
+       public interface OnItemClickListener {
+        void onItemClick(String time);
+    }
 
 }

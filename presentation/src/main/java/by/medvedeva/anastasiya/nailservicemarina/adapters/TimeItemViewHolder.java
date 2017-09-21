@@ -25,4 +25,6 @@ public class TimeItemViewHolder extends BaseItemViewHolder<TimeSlot,
         ItemTimeBinding binding = ItemTimeBinding.inflate(inflater, parent, false);
         return new TimeItemViewHolder(binding, viewModel);
     }
+
+
 }

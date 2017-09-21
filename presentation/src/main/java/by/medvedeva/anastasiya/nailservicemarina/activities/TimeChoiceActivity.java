@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseActivity;
+import by.medvedeva.anastasiya.nailservicemarina.base.BaseFragmentActivity;
 import by.medvedeva.anastasiya.nailservicemarina.databinding.ActivityTimeChoiceBinding;
 
 /**
@@ -15,7 +16,7 @@ import by.medvedeva.anastasiya.nailservicemarina.databinding.ActivityTimeChoiceB
  * on 18.09.2017.
  */
 
-public class TimeChoiceActivity extends BaseActivity {
+public class TimeChoiceActivity extends BaseFragmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

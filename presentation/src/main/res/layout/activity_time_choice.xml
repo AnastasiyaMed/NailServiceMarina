@@ -35,6 +35,15 @@
             android:layout_height="wrap_content"
             android:visibility="@{viewModel.state == STATE.DATA ? View.VISIBLE : View.GONE}" />
 
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.state == STATE.PROGRESS ? View.GONE : View.VISIBLE}">
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </layout>

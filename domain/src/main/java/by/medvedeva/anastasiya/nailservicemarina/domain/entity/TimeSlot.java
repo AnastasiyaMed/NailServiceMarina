@@ -11,7 +11,7 @@ public class TimeSlot implements DomainModel {
     private String time;
     private String fullName;
     private String phone;
-    private String emeil;
+    private String email;
     private String id;
 
     public TimeSlot() {
@@ -49,12 +49,12 @@ public class TimeSlot implements DomainModel {
         this.phone = phone;
     }
 
-    public String getEmeil() {
-        return emeil;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmeil(String emeil) {
-        this.emeil = emeil;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getId() {

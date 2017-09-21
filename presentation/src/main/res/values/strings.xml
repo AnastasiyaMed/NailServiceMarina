@@ -3,4 +3,8 @@
     <string name="hello">Hello! Nail master Belaya Marina welcomes you! Please, choice the date</string>
     <string name="next">Go next</string>
     <string name="warning">Only tomorrow and further time-slots are available</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone">Enter your phone</string>
+    <string name="email">email address</string>
+    <string name="Save">Save</string>
 </resources>
