@@ -3,22 +3,19 @@ package by.medvedeva.anastasiya.nailservicemarina.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.util.Log;
-import android.widget.CalendarView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
 import java.util.Calendar;
 
 import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
 
 public class CalendarViewModel implements BaseViewModel {
-    public static final String DAY = "DAY";
-    public static final String MONTH = "MONTH";
-    public static final String YEAR = "YEAR";
+    private static final String DAY = "DAY";
+    private static final String MONTH = "MONTH";
+    private static final String YEAR = "YEAR";
 
 
     private Activity activity;
@@ -26,7 +23,7 @@ public class CalendarViewModel implements BaseViewModel {
     public ObservableInt month = new ObservableInt();
     public ObservableInt day = new ObservableInt();
 
-    public CalendarViewModel(Activity activity) {
+    CalendarViewModel(Activity activity) {
         this.activity = activity;
         Calendar calendar = Calendar.getInstance();
         year.set(calendar.get(Calendar.YEAR));

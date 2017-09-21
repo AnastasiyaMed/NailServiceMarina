@@ -134,19 +134,4 @@ public class TimeChoiceViewModel implements BaseViewModel {
 
     }
 
-//    public void onItemClick(String time) {
-//
-//        TimeChoiceFragment fragment = new TimeChoiceFragment();
-//        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.replace(R.id.container, fragment, TimeChoiceFragment.class.getName());
-//        Bundle bundle = new Bundle();
-//        bundle.putString("TIME", time);
-//        bundle.putString("DATE", date.get());
-//        // bundle.putString("UPDATE_SUCCESS", activity.getIntent().getStringExtra("UPDATE_SUCCESS"));
-//        fragment.setArguments(bundle);
-//        fragmentTransaction.addToBackStack(null);
-//        fragmentTransaction.commit();
-//
-//
-//    }
 }

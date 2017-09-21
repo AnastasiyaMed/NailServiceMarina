@@ -4,7 +4,10 @@ import java.util.List;
 
 import by.medvedeva.anastasiya.nailservicemarina.data.entity.TimeSlotData;
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -19,5 +22,8 @@ interface RestApi {
 
     @GET("data/time_slots")
     Observable<List<TimeSlotData>> getTimeSlots(@Query("where") String calendarDate);
+
+    @PUT("data/time_slots")
+    Observable<TimeSlotData> saveTimeSlot(@Body TimeSlotData timeSlotData);
 
 }

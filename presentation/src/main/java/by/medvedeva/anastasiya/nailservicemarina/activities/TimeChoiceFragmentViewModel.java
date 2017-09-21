@@ -2,9 +2,12 @@ package by.medvedeva.anastasiya.nailservicemarina.activities;
 
 import android.content.Context;
 import android.databinding.ObservableField;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseFragmentViewModel;
+
+import static android.R.attr.id;
 
 /**
  * Created by Medvedeva Anastasiya
@@ -13,10 +16,12 @@ import by.medvedeva.anastasiya.nailservicemarina.base.BaseFragmentViewModel;
 
 public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
-    public Fragment fragment;
+    private Fragment fragment;
     public ObservableField<String> name = new ObservableField<>("");
     public ObservableField<String> phone = new ObservableField<>("");
     public ObservableField<String> email = new ObservableField<>("");
+    private String date;
+    private String time;
 
 
     public TimeChoiceFragmentViewModel(Fragment fragment) {
@@ -35,6 +40,12 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
     @Override
     public void onViewCreated() {
+        Bundle bundle = fragment.getArguments();
+        if (bundle != null) {
+            date = bundle.getString("DATE");
+            time = bundle.getString("TIME");
+        }
+
 
     }
 
