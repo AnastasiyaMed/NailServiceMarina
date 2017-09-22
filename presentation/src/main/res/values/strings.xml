@@ -8,4 +8,6 @@
     <string name="email">email address</string>
     <string name="Save">Save</string>
     <string name="all_times_are_busy">Sorry, but all times are busy</string>
+    <string name="success">TimeSlot is successful reserved</string>
+    <string name="error">Something went wrong. Please, try again later.</string>
 </resources>

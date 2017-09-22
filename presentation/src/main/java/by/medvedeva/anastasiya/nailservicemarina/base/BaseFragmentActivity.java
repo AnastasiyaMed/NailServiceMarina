@@ -13,6 +13,8 @@ abstract public class BaseFragmentActivity extends FragmentActivity {
 
     protected BaseViewModel viewModel;
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

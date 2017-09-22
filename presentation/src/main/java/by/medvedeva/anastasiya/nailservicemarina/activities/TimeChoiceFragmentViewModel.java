@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
+import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseFragmentViewModel;
 import by.medvedeva.anastasiya.nailservicemarina.data.entity.TimeSlotData;
 import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 import by.medvedeva.anastasiya.nailservicemarina.domain.interaction.TimeSlotSaverUseCase;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created by Medvedeva Anastasiya
@@ -25,6 +27,10 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
     public ObservableField<String> name = new ObservableField<>("");
     public ObservableField<String> phone = new ObservableField<>("");
     public ObservableField<String> email = new ObservableField<>("");
+    public ObservableField<String> success = new ObservableField<>("");
+    public ObservableField<STATE> state = new ObservableField<>(STATE.PROGRESS);
+    public static PublishSubject<String> publishSubject = PublishSubject.create();
+
     private String date;
     private String time;
     private TimeSlotSaverUseCase useCase = new TimeSlotSaverUseCase();
@@ -71,7 +77,7 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
     }
 
     public void onSuperButtonClick() {
-        TimeSlot timeSlot = new TimeSlot();
+        final TimeSlot timeSlot = new TimeSlot();
         timeSlot.setFullName(name.get());
         timeSlot.setTime(time);
         timeSlot.setPhone(phone.get());
@@ -80,13 +86,19 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
         useCase.execute(timeSlot, new DisposableObserver<TimeSlotData>() {
             @Override
             public void onNext(@NonNull TimeSlotData timeSlotData) {
-                fragment.onDestroy();
-                fragment.onDetach();
+                state.set(STATE.DATA);
+                success.set(fragment.getString(R.string.success).concat(" ").concat(timeSlot.getCalendarDate()).concat(" ").concat(timeSlot.getTime().concat(" ").concat(timeSlot.getFullName())));
+                Bundle bundle = new Bundle();
+                bundle.putString("TIMERESERVATION", timeSlot.getTime());
+                fragment.setArguments(bundle);
+                publishSubject.onNext("1");
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
                 Log.e("AAA", e.getMessage());
+                state.set(STATE.DATA);
+                success.set(fragment.getString(R.string.error));
             }
 
             @Override

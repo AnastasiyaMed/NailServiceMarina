@@ -3,6 +3,8 @@
 
     <data>
 
+        <import type="by.medvedeva.anastasiya.nailservicemarina.activities.TimeChoiceFragmentViewModel.STATE" />
+
         <import type="android.view.View" />
 
         <variable
@@ -24,7 +26,8 @@
             android:hint="@string/full_name"
             android:inputType="textPersonName"
             android:text="@={viewModel.name}"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:visibility="@{viewModel.state == STATE.PROGRESS ? View.VISIBLE : View.GONE}" />
 
         <EditText
             android:layout_width="match_parent"
@@ -32,7 +35,8 @@
             android:hint="@string/phone"
             android:inputType="phone"
             android:text="@={viewModel.phone}"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:visibility="@{viewModel.state == STATE.PROGRESS ? View.VISIBLE : View.GONE}" />
 
         <EditText
             android:layout_width="match_parent"
@@ -40,25 +44,28 @@
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:text="@={viewModel.email}"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:visibility="@{viewModel.state == STATE.PROGRESS ? View.VISIBLE : View.GONE}" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:onClick="@{() -> viewModel.onSuperButtonClick()}"
-            android:text="@string/Save" />
+            android:text="@string/Save"
+            android:visibility="@{viewModel.state == STATE.PROGRESS ? View.VISIBLE : View.GONE}" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/accessText"-->
-            <!--android:visibility="gone"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@color/colorAccent"-->
-            <!--android:textColor="@color/colorWhite"-->
-            <!--android:gravity="center"-->
-            <!--android:text="Запись прошла успешно"-->
-            <!--android:textSize="25sp"/>-->
+
+        <TextView
+            android:id="@+id/accessText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="@{viewModel.success}"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:visibility="@{viewModel.state == STATE.PROGRESS ? View.GONE : View.VISIBLE}" />
 
     </LinearLayout>
 </layout>

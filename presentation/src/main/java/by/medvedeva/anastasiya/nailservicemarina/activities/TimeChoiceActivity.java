@@ -18,6 +18,7 @@ import by.medvedeva.anastasiya.nailservicemarina.databinding.ActivityTimeChoiceB
 
 public class TimeChoiceActivity extends BaseFragmentActivity {
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         final TimeChoiceViewModel viewModel = new TimeChoiceViewModel(this);
@@ -31,4 +32,5 @@ public class TimeChoiceActivity extends BaseFragmentActivity {
         binding.recyclerView.setAdapter(viewModel.adapter);
         super.onCreate(savedInstanceState);
     }
+
 }

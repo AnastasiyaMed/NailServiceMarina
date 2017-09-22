@@ -9,4 +9,6 @@
     <string name="email">email адрес</string>
     <string name="Save">Сохранить</string>
     <string name="all_times_are_busy">К сожалению, запись на этот день недоступна</string>
+    <string name="success">Спасибо. Запись зарезервирована.</string>
+    <string name="error">Что-то пошло не так. Пожалуйста, попробуйте еще раз, позже.</string>
 </resources>
