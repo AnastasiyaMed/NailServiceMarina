@@ -4,12 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import java.util.List;
 
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseAdapter;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseItemViewHolder;
-import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 
 
 /**
@@ -17,10 +15,10 @@ import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
  * on 18.08.2017.
  */
 
-public class TimeChoiceAdapter extends BaseAdapter<TimeSlot, TimeItemViewModel> {
-    private List<TimeSlot> items;
+public class TimeChoiceAdapter extends BaseAdapter<String, TimeItemViewModel> {
+    private List<String> items;
 
-    public TimeChoiceAdapter(List<TimeSlot> items) {
+    public TimeChoiceAdapter(List<String> items) {
         this.items = items;
     }
 
@@ -38,9 +36,9 @@ public class TimeChoiceAdapter extends BaseAdapter<TimeSlot, TimeItemViewModel> 
     }
 
     @Override
-    public void onBindViewHolder(BaseItemViewHolder<TimeSlot, TimeItemViewModel, ?> holder, int position) {
+    public void onBindViewHolder(BaseItemViewHolder<String, TimeItemViewModel, ?> holder, int position) {
         super.onBindViewHolder(holder, position);
-        final String time = items.get(position).getTime();
+        final String time = items.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

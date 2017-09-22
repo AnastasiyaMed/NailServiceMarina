@@ -36,6 +36,13 @@
             android:layout_weight="3"
             android:visibility="@{viewModel.state == STATE.DATA ? View.VISIBLE : View.GONE}" />
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.state == STATE.PROGRESS ? View.VISIBLE : View.GONE}" />
+
+
         <LinearLayout
             android:id="@+id/container"
             android:layout_width="match_parent"

@@ -59,7 +59,7 @@ public class RestService {
     }
 
     public Observable<List<TimeSlotData>> getTimeSlots(String calendarDate) {
-        return restApi.getTimeSlots("calendar_date=".concat(calendarDate));
+        return restApi.getTimeSlots("calendar_date=".concat("'").concat(calendarDate).concat("'"));
     }
 
     public Observable<TimeSlotData> saveTimeSlot(TimeSlotData timeSlotData) {

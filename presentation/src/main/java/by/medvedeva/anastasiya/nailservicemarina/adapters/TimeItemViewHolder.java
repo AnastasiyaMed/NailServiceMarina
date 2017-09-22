@@ -12,7 +12,7 @@ import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
  * on 18.08.2017.
  */
 
-class TimeItemViewHolder extends BaseItemViewHolder<TimeSlot,
+class TimeItemViewHolder extends BaseItemViewHolder<String,
         TimeItemViewModel, ItemTimeBinding> {
 
     private TimeItemViewHolder(ItemTimeBinding binding, TimeItemViewModel viewModel) {

@@ -15,6 +15,7 @@ import by.medvedeva.anastasiya.nailservicemarina.adapters.TimeChoiceAdapter;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
 import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 import by.medvedeva.anastasiya.nailservicemarina.domain.interaction.TimeSlotsGetterUseCase;
+import by.medvedeva.anastasiya.nailservicemarina.utility_entity.AvailableTimes;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 
@@ -27,7 +28,9 @@ public class TimeChoiceViewModel implements BaseViewModel {
     private static final String DAY = "DAY";
     private static final String MONTH = "MONTH";
     private static final String YEAR = "YEAR";
-    private List<TimeSlot> times = new ArrayList<>();
+    private static final String BUSY_TIMES = "BUSY_TIMES";
+    private static final String ALL_TIMES_ARE_BUSY = "Sorry, but all times are busy "; // TODO ВЫНЕСТИ В РЕСУРСЫ
+    private List<String> times = new ArrayList<>();
 
     public enum STATE {PROGRESS, DATA}
 
@@ -54,75 +57,63 @@ public class TimeChoiceViewModel implements BaseViewModel {
     @Override
     public void resume() {
 
-        //Tecтовые данные
-        TimeSlot time0 = new TimeSlot();
-        time0.setTime("9:00-11:00");
-        TimeSlot time1 = new TimeSlot();
-        time1.setTime("11:00-13:00");
-        TimeSlot time2 = new TimeSlot();
-        time2.setTime("13:00-15:00");
-        TimeSlot time3 = new TimeSlot();
-        time3.setTime("15:00-17:00");
-        TimeSlot time4 = new TimeSlot();
-        time4.setTime("17:00-19:00");
-        TimeSlot time5 = new TimeSlot();
-        time5.setTime("19:00-21:00");
 
+        // take needed date from calendarActivity
         Intent intent = activity.getIntent();
-
 
         String calendarDate = (String.valueOf(intent.getIntExtra(DAY, 0)))
                 .concat("/")
                 .concat(String.valueOf(1 + intent.getIntExtra(MONTH, 0)))
                 .concat("/")
                 .concat(String.valueOf(intent.getIntExtra(YEAR, 0)));
-
+        // set date to activity
         date.set(calendarDate);
 
-
+        // take busy times from backendless
         useCase.execute(calendarDate, new DisposableObserver<List<TimeSlot>>() {
             @Override
             public void onNext(@NonNull List<TimeSlot> timeSlots) {
+                Log.e(BUSY_TIMES, timeSlots.toString());
+                // form the free times.
+                // Delete busy times from list available times. And set it to field times.
+                AvailableTimes availableTimes = new AvailableTimes();
+                times.addAll(availableTimes.getAvalibleTimes());
                 if (timeSlots.size() != 0) {
-                    Log.e("BBB", timeSlots.toString());
+                    for (TimeSlot timeSlot : timeSlots)
+                        times.remove(timeSlot.getTime());
                 }
+
+                if (times.size() == 0) {
+                    times.add(ALL_TIMES_ARE_BUSY);
+                }
+
+                adapter.setItems(times);
+                state.set(STATE.DATA);
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
-
             }
 
             @Override
             public void onComplete() {
-
             }
         });
-
-
-        times.add(time0);
-        times.add(time1);
-        times.add(time2);
-        times.add(time3);
-        times.add(time4);
-        times.add(time5);
-
-        adapter.setItems(times);
-        state.set(STATE.DATA);
 
         adapter.setOnItemClickListener(new TimeChoiceAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String time) {
-                TimeChoiceFragment fragment = new TimeChoiceFragment();
-                FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.container, fragment, TimeChoiceFragment.class.getName());
-                Bundle bundle = new Bundle();
-                bundle.putString("TIME", time);
-                bundle.putString("DATE", date.get());
-                // bundle.putString("UPDATE_SUCCESS", activity.getIntent().getStringExtra("UPDATE_SUCCESS"));
-                fragment.setArguments(bundle);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                if (!times.get(0).equals(ALL_TIMES_ARE_BUSY)) { // костыль, чтобы не срабатывал клин на сообщение о том, что все таймслоты заняты
+                    TimeChoiceFragment fragment = new TimeChoiceFragment();
+                    FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.container, fragment, TimeChoiceFragment.class.getName());
+                    Bundle bundle = new Bundle();
+                    bundle.putString("TIME", time);
+                    bundle.putString("DATE", date.get());
+                    fragment.setArguments(bundle);
+                    //       fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
             }
         });
 
