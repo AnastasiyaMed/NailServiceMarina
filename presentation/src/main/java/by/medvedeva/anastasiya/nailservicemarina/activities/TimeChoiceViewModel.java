@@ -29,7 +29,6 @@ public class TimeChoiceViewModel implements BaseViewModel {
     private static final String MONTH = "MONTH";
     private static final String YEAR = "YEAR";
     private static final String BUSY_TIMES = "BUSY_TIMES";
-    private static final String ALL_TIMES_ARE_BUSY = "Sorry, but all times are busy "; // TODO ВЫНЕСТИ В РЕСУРСЫ
     private List<String> times = new ArrayList<>();
 
     public enum STATE {PROGRESS, DATA}
@@ -84,6 +83,7 @@ public class TimeChoiceViewModel implements BaseViewModel {
                 }
 
                 if (times.size() == 0) {
+                    String ALL_TIMES_ARE_BUSY = activity.getString(R.string.all_times_are_busy);
                     times.add(ALL_TIMES_ARE_BUSY);
                 }
 
@@ -103,7 +103,7 @@ public class TimeChoiceViewModel implements BaseViewModel {
         adapter.setOnItemClickListener(new TimeChoiceAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String time) {
-                if (!times.get(0).equals(ALL_TIMES_ARE_BUSY)) { // костыль, чтобы не срабатывал клин на сообщение о том, что все таймслоты заняты
+                if (!times.get(0).equals(activity.getString(R.string.all_times_are_busy))) { // костыль, чтобы не срабатывал клин на сообщение о том, что все таймслоты заняты
                     TimeChoiceFragment fragment = new TimeChoiceFragment();
                     FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.container, fragment, TimeChoiceFragment.class.getName());

@@ -7,4 +7,5 @@
     <string name="phone">Enter your phone</string>
     <string name="email">email address</string>
     <string name="Save">Save</string>
+    <string name="all_times_are_busy">Sorry, but all times are busy</string>
 </resources>
