@@ -12,7 +12,6 @@ import java.util.List;
 
 import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.adapters.TimeChoiceAdapter;
-import by.medvedeva.anastasiya.nailservicemarina.adapters.TimeItemViewModel;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
 import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 import by.medvedeva.anastasiya.nailservicemarina.domain.interaction.TimeSlotsGetterUseCase;

@@ -1,13 +1,16 @@
 package by.medvedeva.anastasiya.nailservicemarina.activities;
 
-import android.content.Context;
 import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseFragmentViewModel;
-
-import static android.R.attr.id;
+import by.medvedeva.anastasiya.nailservicemarina.data.entity.TimeSlotData;
+import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
+import by.medvedeva.anastasiya.nailservicemarina.domain.interaction.TimeSlotSaverUseCase;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * Created by Medvedeva Anastasiya
@@ -15,6 +18,8 @@ import static android.R.attr.id;
  */
 
 public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
+    public enum STATE {PROGRESS, DATA}
+
 
     private Fragment fragment;
     public ObservableField<String> name = new ObservableField<>("");
@@ -22,9 +27,10 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
     public ObservableField<String> email = new ObservableField<>("");
     private String date;
     private String time;
+    private TimeSlotSaverUseCase useCase = new TimeSlotSaverUseCase();
 
 
-    public TimeChoiceFragmentViewModel(Fragment fragment) {
+    TimeChoiceFragmentViewModel(Fragment fragment) {
         this.fragment = fragment;
     }
 
@@ -64,7 +70,30 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
     }
 
-    public void onSuperButtonClick(Context context) {
+    public void onSuperButtonClick() {
+        TimeSlot timeSlot = new TimeSlot();
+        timeSlot.setFullName(name.get());
+        timeSlot.setTime(time);
+        timeSlot.setPhone(phone.get());
+        timeSlot.setCalendarDate(date);
+        timeSlot.setEmail(email.get());
+        useCase.execute(timeSlot, new DisposableObserver<TimeSlotData>() {
+            @Override
+            public void onNext(@NonNull TimeSlotData timeSlotData) {
+                fragment.onDestroy();
+                fragment.onDetach();
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.e("AAA", e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
 

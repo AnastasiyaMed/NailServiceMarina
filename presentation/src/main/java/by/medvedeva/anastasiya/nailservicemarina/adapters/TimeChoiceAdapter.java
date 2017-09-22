@@ -40,8 +40,6 @@ public class TimeChoiceAdapter extends BaseAdapter<TimeSlot, TimeItemViewModel> 
     @Override
     public void onBindViewHolder(BaseItemViewHolder<TimeSlot, TimeItemViewModel, ?> holder, int position) {
         super.onBindViewHolder(holder, position);
-        TimeItemViewModel viewModel = new TimeItemViewModel();
-
         final String time = items.get(position).getTime();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -42,7 +42,7 @@ public class TimeSlotsGetterUseCase extends UseCase<String, List<TimeSlot>> {
     private TimeSlot convert(TimeSlotData timeslotData) {
         TimeSlot timeSlot = new TimeSlot();
         timeSlot.setCalendarDate(timeslotData.getCalendarDate());
-        timeSlot.setEmail(timeslotData.getCalendarDate());
+        timeSlot.setEmail(timeslotData.getEmail());
         timeSlot.setFullName(timeslotData.getFullName());
         timeSlot.setId(timeslotData.getId());
         timeSlot.setPhone(timeslotData.getPhone());

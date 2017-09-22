@@ -16,8 +16,8 @@ public class TimeSlotData implements DataModel {
     private String fullName;
     @SerializedName("phone")
     private String phone;
-    @SerializedName("emeil")
-    private String emeil;
+    @SerializedName("email")
+    private String email;
     @SerializedName("objectId")
     private String id;
 
@@ -56,12 +56,12 @@ public class TimeSlotData implements DataModel {
         this.phone = phone;
     }
 
-    public String getEmeil() {
-        return emeil;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmeil(String emeil) {
-        this.emeil = emeil;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getId() {

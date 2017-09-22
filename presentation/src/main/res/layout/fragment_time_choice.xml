@@ -46,8 +46,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:onClick="@{() -> viewModel.onSuperButtonClick(context)}"
+            android:onClick="@{() -> viewModel.onSuperButtonClick()}"
             android:text="@string/Save" />
+
+        <!--<TextView-->
+            <!--android:id="@+id/accessText"-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorAccent"-->
+            <!--android:textColor="@color/colorWhite"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Запись прошла успешно"-->
+            <!--android:textSize="25sp"/>-->
 
     </LinearLayout>
 </layout>
