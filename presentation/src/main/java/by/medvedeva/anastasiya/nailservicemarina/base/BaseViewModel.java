@@ -12,6 +12,8 @@ package by.medvedeva.anastasiya.nailservicemarina.base;
 
         void release();
 
+    void reservedEvent(String s);
+
         void resume();
 
         void pause();

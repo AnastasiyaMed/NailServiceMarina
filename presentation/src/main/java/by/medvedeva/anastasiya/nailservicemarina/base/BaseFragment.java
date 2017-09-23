@@ -1,5 +1,6 @@
 package by.medvedeva.anastasiya.nailservicemarina.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,11 @@ abstract public class BaseFragment extends Fragment {
     public void onResume() {
         super.onResume();
         viewModel.resume();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
     @Override

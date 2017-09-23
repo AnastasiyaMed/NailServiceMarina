@@ -1,5 +1,6 @@
 package by.medvedeva.anastasiya.nailservicemarina.activities;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import by.medvedeva.anastasiya.nailservicemarina.R;
+import by.medvedeva.anastasiya.nailservicemarina.adapters.TimeChoiceAdapter;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseFragment;
 import by.medvedeva.anastasiya.nailservicemarina.databinding.FragmentTimeChoiceBinding;
 
@@ -17,6 +19,14 @@ import by.medvedeva.anastasiya.nailservicemarina.databinding.FragmentTimeChoiceB
  */
 
 public class TimeChoiceFragment extends BaseFragment {
+
+    public interface onTimeReservedListener {
+        public void reservedEvent(String s);
+    }
+
+    public onTimeReservedListener timeReservedListener;
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,5 +45,15 @@ public class TimeChoiceFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            timeReservedListener = (onTimeReservedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString() + " must implement onTimeReservedListener");
+        }
     }
 }

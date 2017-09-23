@@ -22,5 +22,8 @@ public class TimeItemViewModel extends BaseItemViewModel<String> {
     }
 
 
+    @Override
+    public void reservedEvent(String s) {
 
+    }
 }

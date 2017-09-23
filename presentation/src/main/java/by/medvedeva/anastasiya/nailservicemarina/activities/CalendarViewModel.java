@@ -43,6 +43,8 @@ public class CalendarViewModel implements BaseViewModel {
 
     }
 
+
+
     @Override
     public void resume() {
 
@@ -68,5 +70,8 @@ public class CalendarViewModel implements BaseViewModel {
             Log.e("AAAA", String.valueOf(day.get()));
         }
     }
+    @Override
+    public void reservedEvent(String s) {
 
+    }
 }

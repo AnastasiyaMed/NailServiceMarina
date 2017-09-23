@@ -14,8 +14,7 @@ import by.medvedeva.anastasiya.nailservicemarina.databinding.ActivityTimeChoiceB
  * on 18.09.2017.
  */
 
-public class TimeChoiceActivity extends BaseFragmentActivity {
-
+public class TimeChoiceActivity extends BaseFragmentActivity implements TimeChoiceFragment.onTimeReservedListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,4 +30,8 @@ public class TimeChoiceActivity extends BaseFragmentActivity {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void reservedEvent(String s) {
+        viewModel.reservedEvent(s);
+    }
 }

@@ -29,9 +29,11 @@ public class TimeChoiceViewModel implements BaseViewModel {
     private static final String MONTH = "MONTH";
     private static final String YEAR = "YEAR";
     private static final String BUSY_TIMES = "BUSY_TIMES";
-    private List<String> times = new ArrayList<>();
 
     public enum STATE {PROGRESS, DATA}
+
+
+    private List<String> times = new ArrayList<>();
 
     private FragmentActivity activity;
     public ObservableField<STATE> state = new ObservableField<>(STATE.PROGRESS);
@@ -91,6 +93,9 @@ public class TimeChoiceViewModel implements BaseViewModel {
 
             @Override
             public void onError(@NonNull Throwable e) {
+                times.add(activity.getString(R.string.error));
+                adapter.setItems(times);
+                state.set(STATE.DATA);
             }
 
             @Override
@@ -109,12 +114,20 @@ public class TimeChoiceViewModel implements BaseViewModel {
                     bundle.putString("TIME", time);
                     bundle.putString("DATE", date.get());
                     fragment.setArguments(bundle);
-                    //       fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                 }
             }
         });
     }
+
+
+
+    public void reservedEvent(String s) {
+        times.remove(s);
+        adapter.setItems(times);
+        adapter.notifyDataSetChanged();
+    }
+
 
     @Override
     public void pause() {

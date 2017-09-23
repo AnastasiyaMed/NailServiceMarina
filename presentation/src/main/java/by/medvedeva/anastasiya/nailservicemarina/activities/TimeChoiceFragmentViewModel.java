@@ -22,7 +22,7 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
     public enum STATE {PROGRESS, DATA}
 
 
-    private Fragment fragment;
+    private TimeChoiceFragment fragment;
     public ObservableField<String> name = new ObservableField<>("");
     public ObservableField<String> phone = new ObservableField<>("");
     public ObservableField<String> email = new ObservableField<>("");
@@ -35,7 +35,7 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
 
     TimeChoiceFragmentViewModel(Fragment fragment) {
-        this.fragment = fragment;
+        this.fragment = (TimeChoiceFragment) fragment;
     }
 
     @Override
@@ -59,6 +59,7 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
     }
 
+
     @Override
     public void release() {
 
@@ -66,11 +67,13 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
     @Override
     public void resume() {
-        useCase.dispose();
     }
 
     @Override
     public void pause() {
+        if (useCase != null) {
+            useCase.dispose();
+        }
 
     }
 
@@ -86,9 +89,7 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
             public void onNext(@NonNull TimeSlotData timeSlotData) {
                 state.set(STATE.DATA);
                 success.set(fragment.getString(R.string.success).concat(" ").concat(timeSlot.getCalendarDate()).concat(" ").concat(timeSlot.getTime().concat(" ").concat(timeSlot.getFullName())));
-                Bundle bundle = new Bundle();
-                bundle.putString("TIMERESERVATION", timeSlot.getTime());
-                fragment.setArguments(bundle);
+                fragment.timeReservedListener.reservedEvent(time);
             }
 
             @Override
