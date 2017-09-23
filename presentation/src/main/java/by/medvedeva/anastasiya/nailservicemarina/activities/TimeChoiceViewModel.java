@@ -17,10 +17,7 @@ import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 import by.medvedeva.anastasiya.nailservicemarina.domain.interaction.TimeSlotsGetterUseCase;
 import by.medvedeva.anastasiya.nailservicemarina.utility_entity.AvailableTimes;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
-
-import static by.medvedeva.anastasiya.nailservicemarina.activities.TimeChoiceFragmentViewModel.publishSubject;
 
 /**
  * Created by Medvedeva Anastasiya
@@ -41,7 +38,6 @@ public class TimeChoiceViewModel implements BaseViewModel {
     public ObservableField<String> date = new ObservableField<>("");
     TimeChoiceAdapter adapter = new TimeChoiceAdapter(times);
     private TimeSlotsGetterUseCase useCase = new TimeSlotsGetterUseCase();
-    Disposable disposable;
 
     TimeChoiceViewModel(FragmentActivity activity) {
         this.activity = activity;
@@ -59,24 +55,6 @@ public class TimeChoiceViewModel implements BaseViewModel {
 
     @Override
     public void resume() {
-        disposable = publishSubject.subscribeWith(new DisposableObserver<String>() {
-            @Override
-            public void onNext(@NonNull String s) {
-                Log.e("AAA", s);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
-
         // take needed date from calendarActivity
         Intent intent = activity.getIntent();
 
@@ -140,7 +118,7 @@ public class TimeChoiceViewModel implements BaseViewModel {
 
     @Override
     public void pause() {
-
+        useCase.dispose();
     }
 
 }

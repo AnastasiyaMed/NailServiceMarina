@@ -4,7 +4,6 @@ import android.databinding.ObservableField;
 import android.util.Log;
 
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseItemViewModel;
-import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 
 
 /**

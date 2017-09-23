@@ -12,7 +12,6 @@ import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 import by.medvedeva.anastasiya.nailservicemarina.domain.interaction.TimeSlotSaverUseCase;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
-import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created by Medvedeva Anastasiya
@@ -29,7 +28,6 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
     public ObservableField<String> email = new ObservableField<>("");
     public ObservableField<String> success = new ObservableField<>("");
     public ObservableField<STATE> state = new ObservableField<>(STATE.PROGRESS);
-    public static PublishSubject<String> publishSubject = PublishSubject.create();
 
     private String date;
     private String time;
@@ -68,7 +66,7 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
     @Override
     public void resume() {
-
+        useCase.dispose();
     }
 
     @Override
@@ -91,7 +89,6 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
                 Bundle bundle = new Bundle();
                 bundle.putString("TIMERESERVATION", timeSlot.getTime());
                 fragment.setArguments(bundle);
-                publishSubject.onNext("1");
             }
 
             @Override
@@ -107,6 +104,4 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
             }
         });
     }
-
-
 }
