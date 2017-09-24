@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseItemViewHolder;
 import by.medvedeva.anastasiya.nailservicemarina.databinding.ItemTimeBinding;
-import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
 
 /**
  * Created by Medvedeva Anastasiya
