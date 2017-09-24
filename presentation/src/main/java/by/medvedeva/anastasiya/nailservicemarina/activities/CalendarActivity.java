@@ -23,6 +23,5 @@ public class CalendarActivity extends BaseActivity {
         binding.setViewModel(viewModel);
         super.onCreate(savedInstanceState);
 
-
     }
 }
