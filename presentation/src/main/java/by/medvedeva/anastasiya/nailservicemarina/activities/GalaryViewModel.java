@@ -6,6 +6,8 @@ import android.databinding.ObservableField;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.adapters.GalaryAdapter;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
@@ -22,13 +24,15 @@ import io.reactivex.observers.DisposableObserver;
 public class GalaryViewModel implements BaseViewModel {
     public enum STATE {PROGRESS, DATA}
 
-    Activity activity;
+    private Activity activity;
     private List<String> imageUrls = new ArrayList<>();
     public ObservableField<STATE> state = new ObservableField<>(STATE.PROGRESS);
     GalaryAdapter adapter = new GalaryAdapter(imageUrls);
     ImagesGetterUseCase useCase = new ImagesGetterUseCase();
+//    @Inject
+//    ImagesGetterUseCase useCase;
 
-    public GalaryViewModel(Activity activity) {
+    GalaryViewModel(Activity activity) {
         this.activity = activity;
     }
 

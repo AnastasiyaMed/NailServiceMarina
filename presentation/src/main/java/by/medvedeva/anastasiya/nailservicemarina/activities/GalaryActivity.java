@@ -3,7 +3,6 @@ package by.medvedeva.anastasiya.nailservicemarina.activities;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 
 import by.medvedeva.anastasiya.nailservicemarina.R;

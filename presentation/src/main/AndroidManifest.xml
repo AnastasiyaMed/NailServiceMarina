@@ -3,6 +3,7 @@
     package="by.medvedeva.anastasiya.nailservicemarina">
 
     <application
+        android:name=".AppTools"
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:icon="@drawable/nailservice_icon"

@@ -1,20 +1,15 @@
 package by.medvedeva.anastasiya.nailservicemarina.activities;
 
-import com.crashlytics.android.Crashlytics;
-
-import io.fabric.sdk.android.Fabric;
-
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.crashlytics.android.Crashlytics;
 
-import io.fabric.sdk.android.Fabric;
-
 import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseActivity;
 import by.medvedeva.anastasiya.nailservicemarina.databinding.ActivityCalendarBinding;
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by Medvedeva Anastasiya
