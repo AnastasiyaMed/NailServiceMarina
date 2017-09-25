@@ -27,6 +27,7 @@
         </activity>
 
         <activity android:name="by.medvedeva.anastasiya.nailservicemarina.activities.TimeChoiceActivity" />
+        <activity android:name="by.medvedeva.anastasiya.nailservicemarina.activities.GalaryActivity" />
 
     </application>
 

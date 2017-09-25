@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import by.medvedeva.anastasiya.nailservicemarina.data.entity.ImageData;
 import by.medvedeva.anastasiya.nailservicemarina.data.entity.TimeSlotData;
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -64,6 +65,11 @@ public class RestService {
 
     public Observable<TimeSlotData> saveTimeSlot(TimeSlotData timeSlotData) {
         return restApi.saveTimeSlot(timeSlotData);
+    }
+
+    // IMAGES FOR GALARY
+    public Observable<List<ImageData>> getAllImages() {
+        return restApi.getAllImages();
     }
 
 

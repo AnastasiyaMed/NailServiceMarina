@@ -21,7 +21,7 @@ import by.medvedeva.anastasiya.nailservicemarina.databinding.FragmentTimeChoiceB
 public class TimeChoiceFragment extends BaseFragment {
 
     public interface onTimeReservedListener {
-        public void reservedEvent(String s);
+        void reservedEvent(String s);
     }
 
     public onTimeReservedListener timeReservedListener;

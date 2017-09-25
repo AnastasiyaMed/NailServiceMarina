@@ -5,6 +5,7 @@
 
     <data>
 
+
         <variable
             name="viewModel"
             type="by.medvedeva.anastasiya.nailservicemarina.adapters.GalaryItemViewModel" />
@@ -12,21 +13,17 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGray"
+        android:paddingTop="@dimen/default_padding"
+        android:paddingBottom="@dimen/default_padding"
         android:orientation="vertical">
-        
+
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            app:src="@{viewModel.imageUrl}"/>
+            android:layout_height="wrap_content"
+            app:src="@{viewModel.imageUrl}" />
 
-
-        <!--<ProgressBar-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:visibility="@{viewModel.state == STATE.PROGRESS ? View.VISIBLE : View.GONE}" />-->
 
     </FrameLayout>
 </layout>

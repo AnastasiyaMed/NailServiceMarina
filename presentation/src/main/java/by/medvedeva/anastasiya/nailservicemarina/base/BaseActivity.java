@@ -1,6 +1,7 @@
 package by.medvedeva.anastasiya.nailservicemarina.base;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import by.medvedeva.anastasiya.nailservicemarina.R;
+import by.medvedeva.anastasiya.nailservicemarina.activities.CalendarActivity;
+import by.medvedeva.anastasiya.nailservicemarina.activities.GalaryActivity;
 
 /**
  * Created by Medvedeva Anastasiya
@@ -22,7 +25,7 @@ import by.medvedeva.anastasiya.nailservicemarina.R;
 
 
 abstract public class BaseActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener  {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     protected BaseViewModel viewModel;
 
@@ -74,7 +77,7 @@ abstract public class BaseActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-      //  getMenuInflater().inflate(R.menu.main, menu);
+        //  getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -100,9 +103,11 @@ abstract public class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_calendar) {
-            // Handle the camera action
+            Intent intent = new Intent(this, CalendarActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(this, GalaryActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_contacts) {
 
         }
