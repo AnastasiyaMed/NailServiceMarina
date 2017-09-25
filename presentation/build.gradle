@@ -1,4 +1,26 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'io.fabric'
+
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
 
 android {
     compileSdkVersion 26
@@ -33,12 +55,21 @@ dependencies {
 
     compile project(path: ':domain')
 
-    annotationProcessor 'com.android.databinding:compiler:2.3.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
+
+    annotationProcessor   'com.android.databinding:compiler:2.3.0'
 
     compile 'com.github.bumptech.glide:glide:4.1.1'
+
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
 
     testCompile 'junit:junit:4.12'
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
 }
 
 repositories {
@@ -46,5 +77,5 @@ repositories {
     maven {
         url "https://maven.google.com"
     }
-
+    maven { url 'https://maven.fabric.io/public' }
 }
