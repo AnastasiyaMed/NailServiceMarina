@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import by.medvedeva.anastasiya.nailservicemarina.R;
-import by.medvedeva.anastasiya.nailservicemarina.adapters.TimeChoiceAdapter;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseFragment;
 import by.medvedeva.anastasiya.nailservicemarina.databinding.FragmentTimeChoiceBinding;
 
@@ -20,7 +19,7 @@ import by.medvedeva.anastasiya.nailservicemarina.databinding.FragmentTimeChoiceB
 
 public class TimeChoiceFragment extends BaseFragment {
 
-    public interface onTimeReservedListener {
+    interface onTimeReservedListener {
         void reservedEvent(String s);
     }
 

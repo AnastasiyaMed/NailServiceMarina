@@ -5,6 +5,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import by.medvedeva.anastasiya.nailservicemarina.data.entity.TimeSlotData;
 import by.medvedeva.anastasiya.nailservicemarina.data.net.RestService;
 import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
@@ -20,10 +22,17 @@ import io.reactivex.functions.Function;
 
 public class TimeSlotsGetterUseCase extends UseCase<String, List<TimeSlot>> {
     private static final String LOG_TAG = "log_tag";
+    private RestService restService;
+
+    @Inject
+    public TimeSlotsGetterUseCase(RestService restService) {
+        this.restService = restService;
+
+    }
 
     @Override
     protected Observable<List<TimeSlot>> buildUseCase(String calendarDate) {
-        return RestService.getInstance().getTimeSlots(calendarDate).map(new Function<List<TimeSlotData>, List<TimeSlot>>() {
+        return restService.getTimeSlots(calendarDate).map(new Function<List<TimeSlotData>, List<TimeSlot>>() {
             @Override
             public List<TimeSlot> apply(@NonNull List<TimeSlotData> timeSlotDataList) throws Exception {
                 List<TimeSlot> timeSlotList = new ArrayList<>();

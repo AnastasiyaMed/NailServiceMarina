@@ -10,6 +10,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import by.medvedeva.anastasiya.nailservicemarina.AppTools;
 import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.adapters.TimeChoiceAdapter;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
@@ -39,9 +42,11 @@ public class TimeChoiceViewModel implements BaseViewModel {
     public ObservableField<STATE> state = new ObservableField<>(STATE.PROGRESS);
     public ObservableField<String> date = new ObservableField<>("");
     TimeChoiceAdapter adapter = new TimeChoiceAdapter(times);
-    private TimeSlotsGetterUseCase useCase = new TimeSlotsGetterUseCase();
 
+    @Inject
+    TimeSlotsGetterUseCase useCase;
     TimeChoiceViewModel(FragmentActivity activity) {
+        AppTools.appComponent.inject(this);
         this.activity = activity;
     }
 

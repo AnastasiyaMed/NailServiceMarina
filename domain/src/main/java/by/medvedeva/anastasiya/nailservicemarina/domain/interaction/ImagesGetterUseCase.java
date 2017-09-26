@@ -5,6 +5,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import by.medvedeva.anastasiya.nailservicemarina.data.entity.ImageData;
 import by.medvedeva.anastasiya.nailservicemarina.data.net.RestService;
 import by.medvedeva.anastasiya.nailservicemarina.domain.entity.Image;
@@ -21,9 +23,16 @@ import io.reactivex.functions.Function;
 public class ImagesGetterUseCase extends UseCase<Void, List<Image>> {
     private static final String LOG_TAG = "log_tag";
 
+    private RestService restService;
+
+    @Inject
+    public ImagesGetterUseCase(RestService restService) {
+        this.restService = restService;
+    }
+
     @Override
     protected Observable<List<Image>> buildUseCase(Void aVoid) {
-        return RestService.getInstance().getAllImages().map(new Function<List<ImageData>, List<Image>>() {
+        return restService.getAllImages().map(new Function<List<ImageData>, List<Image>>() {
             @Override
             public List<Image> apply(@NonNull List<ImageData> imageDatas) throws Exception {
                 List<Image> imageList = new ArrayList<>();

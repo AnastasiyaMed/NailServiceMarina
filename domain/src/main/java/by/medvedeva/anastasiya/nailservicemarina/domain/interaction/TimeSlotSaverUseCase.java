@@ -1,5 +1,7 @@
 package by.medvedeva.anastasiya.nailservicemarina.domain.interaction;
 
+import javax.inject.Inject;
+
 import by.medvedeva.anastasiya.nailservicemarina.data.entity.TimeSlotData;
 import by.medvedeva.anastasiya.nailservicemarina.data.net.RestService;
 import by.medvedeva.anastasiya.nailservicemarina.domain.entity.TimeSlot;
@@ -12,6 +14,13 @@ import io.reactivex.Observable;
  */
 
 public class TimeSlotSaverUseCase extends UseCase<TimeSlot, TimeSlotData> {
+    private RestService restService;
+
+    @Inject
+    public TimeSlotSaverUseCase(RestService restService) {
+        this.restService = restService;
+    }
+
     @Override
     protected Observable<TimeSlotData> buildUseCase(TimeSlot timeSlot) {
 
@@ -23,6 +32,6 @@ public class TimeSlotSaverUseCase extends UseCase<TimeSlot, TimeSlotData> {
         timeSlotData.setTime(timeSlot.getTime());
 
 
-        return RestService.getInstance().saveTimeSlot(timeSlotData);
+        return restService.saveTimeSlot(timeSlotData);
     }
 }

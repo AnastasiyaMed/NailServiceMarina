@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import by.medvedeva.anastasiya.nailservicemarina.AppTools;
 import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.adapters.GalaryAdapter;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseViewModel;
@@ -28,12 +29,14 @@ public class GalaryViewModel implements BaseViewModel {
     private List<String> imageUrls = new ArrayList<>();
     public ObservableField<STATE> state = new ObservableField<>(STATE.PROGRESS);
     GalaryAdapter adapter = new GalaryAdapter(imageUrls);
-    ImagesGetterUseCase useCase = new ImagesGetterUseCase();
-//    @Inject
-//    ImagesGetterUseCase useCase;
+
+    @Inject
+    ImagesGetterUseCase useCase;
+
 
     GalaryViewModel(Activity activity) {
         this.activity = activity;
+        AppTools.appComponent.inject(this);
     }
 
     @Override

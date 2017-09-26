@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
+import javax.inject.Inject;
+
+import by.medvedeva.anastasiya.nailservicemarina.AppTools;
 import by.medvedeva.anastasiya.nailservicemarina.R;
 import by.medvedeva.anastasiya.nailservicemarina.base.BaseFragmentViewModel;
 import by.medvedeva.anastasiya.nailservicemarina.data.entity.TimeSlotData;
@@ -31,11 +34,13 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
     private String date;
     private String time;
-    private TimeSlotSaverUseCase useCase = new TimeSlotSaverUseCase();
+    @Inject
+  TimeSlotSaverUseCase useCase;
 
 
     TimeChoiceFragmentViewModel(Fragment fragment) {
         this.fragment = (TimeChoiceFragment) fragment;
+        AppTools.appComponent.inject(this);
     }
 
     @Override

@@ -8,7 +8,6 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -29,7 +28,7 @@ interface RestApi {
     Observable<TimeSlotData> saveTimeSlot(@Body TimeSlotData timeSlotData);
 
 
-  // IMAGES FOR GALARY
+  // IMAGES FOR GALERY
 
     @GET("data/imageUrl")
     Observable<List<ImageData>> getAllImages();
