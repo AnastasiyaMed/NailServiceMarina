@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGray"
-        android:paddingTop="@dimen/default_padding"
+        android:paddingTop="@dimen/activity_top_padding"
         android:paddingBottom="@dimen/default_padding"
         android:orientation="vertical">
 

@@ -16,23 +16,22 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_gravity="top"
-        android:layout_weight="8"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_gravity="top|start"
+        android:layout_weight="6"
+        android:layout_marginBottom="@dimen/default_padding"
         android:src="@drawable/manicur" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:text="@string/marina"
-        android:layout_weight="1"
          />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
         android:text="@string/telephone_marina" />
 
 </LinearLayout>
