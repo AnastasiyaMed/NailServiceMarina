@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <activity
             android:name="by.medvedeva.anastasiya.nailservicemarina.activities.CalendarActivity"
 
@@ -29,7 +30,21 @@
         <activity android:name="by.medvedeva.anastasiya.nailservicemarina.activities.TimeChoiceActivity" />
 
 
-        <activity android:name="by.medvedeva.anastasiya.nailservicemarina.activities.GalaryActivity" />
+        <activity
+            android:name="by.medvedeva.anastasiya.nailservicemarina.activities.GalaryActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com” -->
+                <data
+                    android:host="www.google.com"
+                    android:scheme="http" />
+            </intent-filter>
+
+        </activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"
