@@ -35,7 +35,7 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
     private String date;
     private String time;
     @Inject
-  TimeSlotSaverUseCase useCase;
+    TimeSlotSaverUseCase useCase;
 
 
     TimeChoiceFragmentViewModel(Fragment fragment) {
@@ -67,7 +67,9 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
     @Override
     public void release() {
-
+        if (useCase != null) {
+            useCase.dispose();
+        }
     }
 
     @Override
@@ -76,9 +78,6 @@ public class TimeChoiceFragmentViewModel implements BaseFragmentViewModel {
 
     @Override
     public void pause() {
-        if (useCase != null) {
-            useCase.dispose();
-        }
 
     }
 
